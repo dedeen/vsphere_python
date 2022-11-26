@@ -16,6 +16,7 @@ def get_vc_session(vcip,username,password):
          s.post('https://'+vcip+'/rest/com/vmware/cis/session',auth=(username,password))
          return s
 
+############################################################
 # Function to get all the VMs from vCenter inventory
 def get_vms(vcip):
         vms=s.get('https://'+vcip+'/rest/vcenter/vm')
@@ -28,3 +29,8 @@ def poweron_vm(vmmoid,vcip):
 # Function to power off particular VM
 def poweroff_vm(vmmoid,vcip):
         s.post('https://'+vcip+'/rest/vcenter/vm/'+vmmoid+'/power/stop')
+############################################################
+# Function to get all the ESXi Hosts from VCSA
+def get_hosts(vcip):
+        hosts=s.get('https://'+vcip+'/rest/vcenter/host')
+        return hosts
