@@ -1,2 +1,2 @@
 # vcsa_rest
-Some utilities to interact with ESXi via VCSA REST API. 
+Some utilities to interact with vsphere via VCSA REST API. 
