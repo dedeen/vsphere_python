@@ -61,12 +61,17 @@ datastore_response=json.loads(datastores.text)
 json_data=datastore_response["value"]
 
 print()
-print ("Datastores Returned from VCSA")
-print ("=============================")
+print ("Datastores Returned from VCSA \t|    Capacity (GB)      Free (GB)        % Free")
+print ("==============================================================================")
 
 for ds in json_data:
       pad = 25 - len(ds.get("name"))
-      print (ds.get("name")+" "* pad +ds.get("type")+"\t"
-            +str(ds.get("free_space"))+"\t"+str(ds.get("capacity"))
+      cap_gbps = ds.get("capacity") // 1048576      #convert to GB
+      free_gbps = ds.get("free_space") // 1048576
+      temp=(free_gbps / cap_gbps)*100               #% free of capacity
+      
+      print (ds.get("name")+" "* pad +ds.get("type")+"\t"+"\t"
+            +str(cap_gbps)+"    \t"+str(free_gbps)+"    \t"
+            +str(int(temp))+" %"
             )
 
