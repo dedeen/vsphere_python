@@ -52,3 +52,21 @@ print ("========================")
 for host in json_data:
       pad = 25 - len(host.get("host"))
       print (host.get("host")+" "* pad +host.get("name")+"\t"+host.get("connection_state"))
+#############################################################            
+#Get all the datastores from VCSA, using vcsa_rest_utils module.
+datastores = vcsa_rest_utils.get_datastores(vcip)
+
+# Parsing the JSON response we got from above function call (it has all hosts from vcsa
+datastore_response=json.loads(datastores.text)
+json_data=datastore_response["value"]
+
+print()
+print ("Datastores Returned from VCSA")
+print ("=============================")
+
+for ds in json_data:
+      pad = 25 - len(ds.get("name"))
+      print (ds.get("name")+" "* pad +ds.get("type")+"\t"
+            +str(ds.get("free_space"))+"\t"+str(ds.get("capacity"))
+            )
+

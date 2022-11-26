@@ -34,3 +34,8 @@ def poweroff_vm(vmmoid,vcip):
 def get_hosts(vcip):
         hosts=s.get('https://'+vcip+'/rest/vcenter/host')
         return hosts
+############################################################
+# Function to get all the datastores from VCSA
+def get_datastores(vcip):
+        datastores=s.get('https://'+vcip+'/rest/vcenter/datastore')
+        return datastores
