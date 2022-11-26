@@ -10,7 +10,7 @@ vcip="10.0.0.175" # vCenter server ip address/FQDN
 #Get vCenter server session and can be used as needed. pass vcenter username & password
 vcsession = vcsa_rest_utils.get_vc_session(vcip,"administrator@vsphere.local","Edeen#11")
 
-#Get all the VMs from inventory using below method from "vcrest" module.
+#Get all the VMs from inventory using below method from "vcsa_rest_utils" module.
 vms = vcsa_rest_utils.get_vms(vcip)
 
 # Parsing the JSON response we got from above function call (it has all the Vms present in inventory
@@ -38,4 +38,17 @@ for vm in json_data:
                     +str(vm.get("memory_size_MiB"))+" MiB"+"\t"
                     +str(vm.get("cpu_count"))+" cpus"+"\t"
             )
-            
+#############################################################            
+#Get all the ESXi hosts from VCSA, using vcsa_rest_utils module.
+hosts = vcsa_rest_utils.get_hosts(vcip)
+
+# Parsing the JSON response we got from above function call (it has all hosts from vcsa
+host_response=json.loads(hosts.text)
+json_data=host_response["value"]
+
+print()
+print ("Hosts Returned from VCSA")
+print ("========================")
+for host in json_data:
+      pad = 25 - len(host.get("host"))
+      print (host.get("host")+" "* pad +host.get("name")+"\t"+host.get("connection_state"))
