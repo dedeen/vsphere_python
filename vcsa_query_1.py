@@ -17,10 +17,17 @@ vms = vcsa_rest_utils.get_vms(vcip)
 vm_response=json.loads(vms.text)
 json_data=vm_response["value"]
 
-print ("VM names and its unique MOID")
-print ("============================")
+print ("VM names and its unique MOID, ON")
+print ("=================================")
 for vm in json_data:
-        print (vm.get("name")+" :: "+vm.get("vm"))
-        #We are powering on all the VMs those are in powered off state
-  #      if vm.get("power_state") == "POWERED_OFF":
-  #              vcrest.poweron_vm(vm.get("vm"),vcip)
+        if vm.get("power_state") == "POWERED_ON":
+            pad = 25 - len(vm.get("name"))
+            print (vm.get("name")+" "* pad +vm.get("vm")+"\t"+vm.get("power_state"))
+                
+print ("VM names and its unique MOID, OFF")
+print ("=================================")
+for vm in json_data:
+        if vm.get("power_state") == "POWERED_OFF":
+            pad = 25 - len(vm.get("name"))
+            print (vm.get("name")+" "* pad +vm.get("vm")+"\t"+vm.get("power_state"))
+            
