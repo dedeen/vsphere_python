@@ -17,17 +17,25 @@ vms = vcsa_rest_utils.get_vms(vcip)
 vm_response=json.loads(vms.text)
 json_data=vm_response["value"]
 
-print ("VM names and its unique MOID, ON")
-print ("=================================")
+print()
+print ("VMs and MOIDs, Powered On")
+print ("=========================")
 for vm in json_data:
         if vm.get("power_state") == "POWERED_ON":
             pad = 25 - len(vm.get("name"))
-            print (vm.get("name")+" "* pad +vm.get("vm")+"\t"+vm.get("power_state"))
+            print (vm.get("name")+" "* pad +vm.get("vm")+"\t"+vm.get("power_state")+"\t"  
+                    +str(vm.get("memory_size_MiB"))+" MiB"+"\t"
+                    +str(vm.get("cpu_count"))+" cpus"+"\t"
+            )
                 
-print ("VM names and its unique MOID, OFF")
-print ("=================================")
+print()                
+print ("VMs and MOIDs, Powered Off")
+print ("==========================")
 for vm in json_data:
         if vm.get("power_state") == "POWERED_OFF":
             pad = 25 - len(vm.get("name"))
-            print (vm.get("name")+" "* pad +vm.get("vm")+"\t"+vm.get("power_state"))
+            print (vm.get("name")+" "* pad +vm.get("vm")+"\t"+vm.get("power_state")+"\t"  
+                    +str(vm.get("memory_size_MiB"))+" MiB"+"\t"
+                    +str(vm.get("cpu_count"))+" cpus"+"\t"
+            )
             
