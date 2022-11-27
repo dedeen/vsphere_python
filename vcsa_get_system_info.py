@@ -4,17 +4,16 @@
 #               Tested with ESXi and VCSA 6.7
 #               https://code.vmware.com/apis/191/vsphere-automation
 #               Dan Edeen, dan@dsblue.net    Oct 2022
-#################################################################################
+#
 import vcsa_rest_utils
 import json
 
 #Default values here, you need to replace for your deployment
 vcip="10.0.0.1" # vCenter server ip address/FQDN
 vcuser="administrator@vsphere.local"
-vcpwd="password"
+vcpwd="Password"
 vcsession = vcsa_rest_utils.get_vc_session(vcip,vcuser,vcpwd)
-
-#################################################################################
+#
 #Get all the VMs from inventory using below method from "vcsa_rest_utils" module.
 vms = vcsa_rest_utils.get_vms(vcip)
 
@@ -45,7 +44,8 @@ for vm in json_data:
                     +str(vm.get("memory_size_MiB"))+" MiB"+"\t"
                     +str(vm.get("cpu_count"))+" cpus"+"\t"
             )
-#################################################################################           
+#
+#
 #Get all the ESXi hosts from VCSA, using vcsa_rest_utils module.
 hosts = vcsa_rest_utils.get_hosts(vcip)
 
@@ -60,7 +60,8 @@ print ("========================")
 for host in json_data:
       pad = 25 - len(host.get("host"))
       print (host.get("host")+" "* pad +host.get("name")+"\t"+host.get("connection_state"))
-#################################################################################
+
+#
 #Get all the datastores from VCSA, using vcsa_rest_utils module.
 datastores = vcsa_rest_utils.get_datastores(vcip)
 
@@ -82,7 +83,8 @@ for ds in json_data:
             +str(cap_gbps)+"    \t"+str(free_gbps)+"    \t"
             +str(int(temp))+" %"
             )
-#################################################################################
+      
+#
 #Get all the networks from VCSA, using vcsa_rest_utils module.
 networks = vcsa_rest_utils.get_networks(vcip)
 
@@ -100,5 +102,3 @@ for network in json_data:
       print (network.get("name")+" "*pad1 +network.get("network")+" "*pad2 +network.get("type")
      )
 #################################################################################
-# End
-#################################################################################          
