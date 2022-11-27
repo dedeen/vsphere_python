@@ -39,7 +39,7 @@ def list_vms(vm,depth=1):
     
 #list the vms from a vCenter
 def main():
-    si= SmartConnect(host="10.0.0.175", user="administrator@vsphere.local", pwd="Edeen#11", sslContext=s)
+    si= SmartConnect(host="10.0.0.1", user="administrator@vsphere.local", pwd="Pwd", sslContext=s)
     content = si.RetrieveContent()
     for child in content.rootFolder.childEntity:
         if hasattr(child, 'vmFolder'):
