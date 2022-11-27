@@ -1,2 +1,4 @@
 # vcsa_rest
-Some utilities to interact with vsphere via VCSA REST API. 
+Some simple scripts to interact with VCSA via REST API and pyvmomi. 
+vcsa*.py use REST API
+vcenter*.py also use pyvmomi
