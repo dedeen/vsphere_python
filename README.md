@@ -1,3 +1,4 @@
-# vcsa_rest
-Some simple python scripts to interact with VCSA. 
-vcsa*.py use REST API, and vcenter*.py add pyvmomi. 
+## Python Scripts for AWS
+This repo contains a few python scripts to interact with vSphere, using vCenter REST API and pyVmomi.  
+
+Dan Edeen, dan@dsblue.net, 2022 
