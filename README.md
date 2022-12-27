@@ -1,4 +1,4 @@
 ## Python Scripts for VMWare
-This repo contains a few python scripts that I've written to interact with vSphere, using vCenter REST API and pyVmomi.  
+This repo contains a couple of simple python scripts for vSphere using vCenter REST API and pyVmomi.  
 
 Dan Edeen, dan@dsblue.net, 2022 
